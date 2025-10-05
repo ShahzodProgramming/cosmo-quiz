@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="uz">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Savol 2 — Cosmos Quiz</title><script src="https://cdn.tailwindcss.com"></script></head>
+<style>
+    .glass { background: rgba(255,255,255,0.04); backdrop-filter: blur(6px); }
+    .gradient-text { background: linear-gradient(90deg,#7dd3fc,#c084fc,#f472b6); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  </style>
+<body class="min-h-screen bg-gradient-to-b from-gray-900 via-slate-900 to-black text-slate-100 flex items-center justify-center p-6">
+  <main class="max-w-3xl w-full rounded-2xl p-8 md:p-12 shadow-2xl bg-white/5">
+    <header class="flex items-start justify-between"><h1 class="text-2xl md:text-3xl font-extrabold gradient-text">Savol 9</h1><a href="Home.html" class="px-3 py-2 bg-slate-800 rounded-md">Menu</a></header>
+    <section class="mt-8">
+      <h2 class="text-xl font-bold">Oy Yerdan taxminan nechchi km uzoqlikda?</h2>
+      <div class="mt-6"><button id="s" class="px-5 py-3 bg-cyan-600 rounded-full">Javobni ko‘rish</button><button id="h" class="hidden px-5 py-3 bg-slate-700 rounded-full">Javobni yashirish</button></div>
+      <div id="a" class="hidden mt-6 p-4 bg-white/5 rounded-xl"><p><b>Javob:</b> ~384,000 km.</p></div>
+    </section>
+    <nav class="mt-8 flex justify-between"><a href="savol_8.html" class="px-4 py-2 bg-red-600 rounded-md">⟵ Orqaga</a><a href="savol_10.html" class="px-4 py-2 bg-green-600 rounded-md">Oldinga ⟶</a></nav>
+    <footer class="mt-6 text-sm text-slate-400">— Savol 2 / 10</footer>
+  </main>
+  <script>const s=document.getElementById('s'),h=document.getElementById('h'),a=document.getElementById('a');s.onclick=()=>{a.classList.remove('hidden');s.classList.add('hidden');h.classList.remove('hidden');};h.onclick=()=>{a.classList.add('hidden');h.classList.add('hidden');s.classList.remove('hidden');};</script>
+</body></html>

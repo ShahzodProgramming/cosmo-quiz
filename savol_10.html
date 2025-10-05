@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="uz">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Savol 10 — Cosmos Quiz</title>
+  <meta name="description" content="Savol 10: Astronavtlar birinchi marta qachon Oyga qadam qo'ydi?" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .glass {
+      background: rgba(255,255,255,0.04);
+      backdrop-filter: blur(6px);
+    }
+    .gradient-text {
+      background: linear-gradient(90deg,#7dd3fc,#c084fc,#f472b6);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    /* Javob animatsiyasi */
+    .reveal {
+      transition: all 300ms ease;
+      transform-origin: top;
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-gradient-to-b from-gray-900 via-slate-900 to-black text-slate-100 flex items-center justify-center p-6">
+
+  <main class="max-w-3xl w-full glass rounded-2xl p-8 md:p-12 shadow-2xl">
+    <!-- Header -->
+    <header class="flex items-start justify-between">
+      <div>
+        <h1 class="text-2xl md:text-3xl font-extrabold gradient-text">Savol 10</h1>
+        <p class="text-sm text-slate-300 mt-1">Oxirgi savol — tarixiy voqea</p>
+      </div>
+      <a href="Home.html" class="text-sm px-3 py-2 rounded-md bg-slate-800 hover:bg-slate-700">Menu</a>
+    </header>
+
+    <!-- Question -->
+    <section class="mt-8">
+      <h2 class="text-xl md:text-2xl font-bold">Astronavtlar birinchi marta qachon Oyga qadam qo‘ydi?</h2>
+      <p class="mt-4 text-slate-300">Bu savol kosmonavtika tarixidagi eng muhim voqealardan biriga oid.</p>
+
+      <!-- Javobni ko'rish tugmasi -->
+      <div class="mt-6">
+        <button id="showAnswerBtn"
+                class="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-cyan-600 hover:bg-cyan-500 active:scale-95 transition font-medium shadow">
+          Javobni ko‘rish
+        </button>
+      </div>
+
+      <!-- Javob (dastlab yashirin) -->
+      <div id="answerCard" class="mt-6 hidden rounded-xl p-4 bg-white/5 border border-white/6 reveal">
+        <h3 class="font-semibold text-lg text-green-300">Javob:</h3>
+        <p class="mt-2 text-slate-100">
+          1969-yil. <strong>Apollo 11</strong> missiyasi doirasida Neil Armstrong va Buzz Aldrin 1969-yil 20-iyulda Oyga qo‘ndi.
+          Neil Armstrong birinchi bo‘lib Oy ustiga qadam qo‘ydi va mashhur so‘zlarni aytdi: “That's one small step for [a] man, one giant leap for mankind.”
+        </p>
+        <p class="mt-2 text-sm text-slate-400">Qo‘shimcha: Michael Collins kapsulada qolib, Oy orbitasida qoldi.</p>
+      </div>
+    </section>
+
+    <!-- Navigatsiya tugmalari -->
+    <nav class="mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-between items-center">
+      <div class="flex gap-3 w-full sm:w-auto">
+        <!-- Orqaga -> savol_9.html -->
+        <a href="savol_9.html" class="flex-1 sm:flex-none text-center px-4 py-2 rounded-md bg-red-600 hover:bg-red-500 transition">
+          ⟵ Orqaga
+        </a>
+
+      </div>
+
+      <div class="flex gap-3 w-full sm:w-auto">
+        <a href="Home.html" class="px-4 py-2 rounded-md border border-slate-700 text-slate-200 hover:bg-slate-800 transition">Menu</a>
+
+        <!-- Yana bir tugma: Javobni yashirish (faqat JS bilan) -->
+        <button id="hideAnswerBtn" class="px-4 py-2 rounded-md bg-slate-700 hover:bg-slate-600 transition hidden">Javobni yashirish</button>
+      </div>
+    </nav>
+
+    <!-- Footer izohi -->
+    <footer class="mt-6 text-sm text-slate-400">
+      <p>— Savol 10 / 10</p>
+    </footer>
+  </main>
+
+  <script>
+    const showBtn = document.getElementById('showAnswerBtn');
+    const hideBtn = document.getElementById('hideAnswerBtn');
+    const answerCard = document.getElementById('answerCard');
+
+    function revealAnswer() {
+      answerCard.classList.remove('hidden');
+      // kichik ochilish animatsiyasi
+      answerCard.style.opacity = 0;
+      answerCard.style.transform = 'translateY(-6px) scale(0.99)';
+      requestAnimationFrame(() => {
+        answerCard.style.transition = 'opacity 250ms ease, transform 250ms ease';
+        answerCard.style.opacity = 1;
+        answerCard.style.transform = 'translateY(0) scale(1)';
+      });
+      showBtn.classList.add('hidden');
+      hideBtn.classList.remove('hidden');
+      // accessibility: fokus javobga tushsin
+      answerCard.setAttribute('tabindex','-1');
+      answerCard.focus();
+    }
+
+    function hideAnswer() {
+      answerCard.style.transition = 'opacity 180ms ease, transform 180ms ease';
+      answerCard.style.opacity = 0;
+      answerCard.style.transform = 'translateY(-6px) scale(0.99)';
+      setTimeout(() => {
+        answerCard.classList.add('hidden');
+        answerCard.style.opacity = '';
+        answerCard.style.transform = '';
+      }, 180);
+      showBtn.classList.remove('hidden');
+      hideBtn.classList.add('hidden');
+    }
+
+    showBtn.addEventListener('click', revealAnswer);
+    hideBtn.addEventListener('click', hideAnswer);
+
+    // Klaviatura qisqacha tugmalar: Enter yoki Space javobni ko'rsatadi / yashiradi
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        const isVisible = !answerCard.classList.contains('hidden');
+        if (!isVisible) revealAnswer();
+        else hideAnswer();
+      }
+    });
+  </script>
+</body>
+</html>

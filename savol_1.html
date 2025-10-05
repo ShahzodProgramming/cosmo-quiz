@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="uz">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Savol 1 — Cosmos Quiz</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .glass { background: rgba(255,255,255,0.04); backdrop-filter: blur(6px); }
+    .gradient-text { background: linear-gradient(90deg,#7dd3fc,#c084fc,#f472b6); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  </style>
+</head>
+<body class="min-h-screen bg-gradient-to-b from-gray-900 via-slate-900 to-black text-slate-100 flex items-center justify-center p-6">
+  <main class="max-w-3xl w-full glass rounded-2xl p-8 md:p-12 shadow-2xl">
+    <header class="flex items-start justify-between">
+      <div>
+        <h1 class="text-2xl md:text-3xl font-extrabold gradient-text">Savol 1</h1>
+      </div>
+      <a href="Home.html" class="text-sm px-3 py-2 rounded-md bg-slate-800 hover:bg-slate-700">Menu</a>
+    </header>
+
+    <section class="mt-8">
+      <h2 class="text-xl md:text-2xl font-bold">Quyosh tizimida nechta sayyora mavjud?</h2>
+      <div class="mt-6">
+        <button id="showBtn" class="px-5 py-3 rounded-full bg-cyan-600 hover:bg-cyan-500">Javobni ko‘rish</button>
+        <button id="hideBtn" class="px-5 py-3 rounded-full bg-slate-700 hover:bg-slate-600 hidden">Javobni yashirish</button>
+      </div>
+      <div id="answer" class="mt-6 hidden rounded-xl p-4 bg-white/5 border border-white/6">
+        <p><b>Javob:</b> 8 ta sayyora mavjud.</p>
+      </div>
+    </section>
+
+    <nav class="mt-8 flex justify-between">
+      <a href="Home.html" class="px-4 py-2 rounded-md bg-red-600 hover:bg-red-500">⟵ Orqaga</a>
+      <a href="savol_2.html" class="px-4 py-2 rounded-md bg-green-600 hover:bg-green-500">Oldinga ⟶</a>
+    </nav>
+    <footer class="mt-6 text-sm text-slate-400">— Savol 1 / 10</footer>
+  </main>
+  <script>
+    const s=document.getElementById('showBtn'),h=document.getElementById('hideBtn'),a=document.getElementById('answer');
+    s.onclick=()=>{a.classList.remove('hidden');s.classList.add('hidden');h.classList.remove('hidden');};
+    h.onclick=()=>{a.classList.add('hidden');h.classList.add('hidden');s.classList.remove('hidden');};
+  </script>
+</body>
+</html>
